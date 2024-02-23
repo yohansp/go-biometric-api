@@ -21,7 +21,6 @@ func HandlerSettingRoute(app *fiber.App) {
 	app.Patch("auth/biometric/sharedkey", func(c *fiber.Ctx) error {
 		var accessToken = c.GetReqHeaders()["Authorization"][0]
 		accessToken = accessToken[7:]
-
 		var bioClaim BioAuthClaim
 		token, err := jwt.ParseWithClaims(accessToken, &bioClaim, func(t *jwt.Token) (interface{}, error) {
 			return secretKey, nil
